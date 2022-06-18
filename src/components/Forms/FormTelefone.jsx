@@ -45,12 +45,12 @@ function FormTelefone({ i, tel, tels, setTels }){
                     />
                 </Form.Group>
             </Row>
-            {
+            {/* {
                 i != 0 &&
                 <RemoveButton
                    func={() => removeTelefone()}
                 />
-            }
+            } */}
         </div>
     );
 }

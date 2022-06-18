@@ -44,7 +44,6 @@ function RegisterUser({ previousPage }){
     }
 
     async function onSubmit(){
-        debugger;
         const finalUser = {
             informacoes: userInfos,
             enderecos: userEnds,

@@ -90,12 +90,12 @@ function FormEndereço({ i, end, ends, setEnds }){
                     />
                 </Form.Group>
             </Row>
-            {
+            {/* {
                 i != 0 &&
                 <RemoveButton
                    func={() => removeEndereco()}
                 />
-            }
+            } */}
         </div>
     );
 }
