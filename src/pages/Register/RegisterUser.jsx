@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Form, Row, Col } from 'react-bootstrap';
+import { UserContext } from '../../provider/UserContext';
 
 import './RegisterUser.css';
 
@@ -9,17 +11,21 @@ import FormEndereço from '../../components/Forms/FormEndereço';
 import FormTelefone from '../../components/Forms/FormTelefone';
 
 function RegisterUser({ previousPage }){
-    const [enderecos, setEnderecos] = useState([{nome: "", endereco: "", numero: "", comp: "", cidade: ""}]);
+    const { user, setUser } = useContext(UserContext);
+    const [ tempUser, setTempUser ] = useState(user);
 
     function addEndereco(){
-        const end = {
+        const blankEndereco = {
             nome: "", 
             endereco: "", 
             numero: "", 
             comp: "", 
             cidade: ""
         }
-        setEnderecos(oldArray => [...oldArray, end]);
+        let newUser = tempUser;
+        newUser.enderecos = [...newUser.enderecos, blankEndereco];
+        setTempUser(newUser);
+        console.log(tempUser.enderecos)
     }
 
     return (
@@ -29,31 +35,43 @@ function RegisterUser({ previousPage }){
             />
 
             <div className="form-container">
-                <form>
+                <div>
                     <FormHeader />
                     <div>
                         <div>Endereços</div>
                         {
-                            enderecos.map(x => {
+                            tempUser &&
+                            tempUser.enderecos.map((x, i) => {
                                 return (
-                                    <FormEndereço />
+                                    <FormEndereço
+                                        i={i}
+                                    />
                                 );
                             })
                         }
-                        <AddButton 
+                        <AddButton
                             text={"Endereço"}
                             func={() => addEndereco()}
                         />
                     </div>
                     <div>
                         <div>Telefones</div>
-                        <FormTelefone />
+                        {
+                            user.telefones.map((x, i) => {
+                                return (
+                                    <FormTelefone 
+                                        positionArray={i}
+                                    />
+                                );
+                            })
+                        }
                         <AddButton 
                             text={"Telefone"}
+                            func={() => addTelefone()}
                         />
                     </div>
-                    <button type="submit" onClick={() => console.log("euae")} class="btn btn-primary">Cadastrar</button>
-                </form>
+                    <button type="submit" onClick={() => console.log("euae")} className="btn btn-primary">Cadastrar</button>
+                </div>
             </div>
         </>
     );

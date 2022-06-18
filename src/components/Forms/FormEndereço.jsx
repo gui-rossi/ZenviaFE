@@ -1,28 +1,57 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import RemoveButton from '../RemoveButton/RemoveButton';
+import { Form, Row, Col } from 'react-bootstrap';
+import { UserContext } from '../../provider/UserContext'
 
-function FormEndereço({}){
+import './Forms.css';
+
+function FormEndereço({ i }){
+    const { user, setUser } = useContext(UserContext);
+
+    function changeNome(newNome){
+        let newUser = user;
+        newUser.enderecos[i].nome = newNome;
+        setUser(newUser);
+    }
+
     return (
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Nome</label>
-                <input type={'text'} required={true} class="form-control" placeholder="Endereço de trabalho*"></input>
-            </div>
-            <div class="form-group col-md-4">
-                <label>Endereço</label>
-                <input type={'text'} required={true} class="form-control" placeholder="Rua Lamenha Lins*"></input>
-            </div>
-            <div class="form-group col-md-1">
-                <label>Número</label>
-                <input type={'text'} required={true} class="form-control" placeholder="368*"></input>
-            </div>
-            <div class="form-group col-md-1">
-                <label>Complemento</label>
-                <input type={'text'} class="form-control" placeholder="1066"></input>
-            </div>
-            <div class="form-group col-md-3">
-                <label>Cidade</label>
-                <input type={'text'} required={true} class="form-control" placeholder="Curitiba*"></input>
-            </div>
+        <div className="align-icon-to-bootstrap">
+            <Row className="mb-3">
+                <Form.Group className="col-4" as={Col}>
+                    <Form.Label>Nome</Form.Label>
+                    <Form.Control 
+                        type="text" 
+                        placeholder="Endereço de trabalho*" 
+                        onChange={e => changeNome(e.target.value)} 
+                    />
+                </Form.Group>
+                <Form.Group className="col-2" as={Col}>
+                    <Form.Label>Endereço</Form.Label>
+                    <Form.Control 
+                        type="text" 
+                        placeholder="Rua Lamenha Lins*"
+                        onChange={e => console.log(e.target.value)} 
+                    />
+                </Form.Group>
+                <Form.Group as={Col}>
+                    <Form.Label>Número</Form.Label>
+                    <Form.Control type="number" placeholder="368*" />
+                </Form.Group>
+                <Form.Group as={Col}>
+                    <Form.Label>Complemento</Form.Label>
+                    <Form.Control type="number" placeholder="1066" />
+                </Form.Group>
+                <Form.Group className="col-2" as={Col}>
+                    <Form.Label>Cidade</Form.Label>
+                    <Form.Control type="text" placeholder="Curitiba*" />
+                </Form.Group>
+            </Row>
+            {
+                i != 0 &&
+                <RemoveButton
+                   
+                />
+            }
         </div>
     );
 }

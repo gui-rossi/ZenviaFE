@@ -1,17 +1,18 @@
 import React from 'react';
+import { Form, Row, Col } from 'react-bootstrap';
 
 function FormTelefone({}){
     return (
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Nome</label>
-                <input type={'text'} required={true} class="form-control" placeholder="Telefone do trabalho*"></input>
-            </div>
-            <div class="form-group col-md-3">
-                <label>Número</label>
-                <input type={'text'} required={true} class="form-control" placeholder="(16) 99753-6898*"></input>
-            </div>
-        </div>
+        <Row className="mb-3">
+            <Form.Group className="col-2" as={Col}>
+                <Form.Label>Nome</Form.Label>
+                <Form.Control type="text" placeholder="Telefone de trabalho*" />
+            </Form.Group>
+            <Form.Group className="col-2" as={Col}>
+                <Form.Label>Número</Form.Label>
+                <Form.Control type="text" placeholder="(16) 99753-6898*" />
+            </Form.Group>
+        </Row>
     );
 }
 

@@ -1,0 +1,16 @@
+.remove-button-classes {
+    border: unset;
+    border-radius: 15px;
+    background-color: #193c86;
+    color: white;
+    padding-bottom: 3px;
+    margin-left: 5px;
+}
+
+.remove-button-classes:hover {
+    cursor: pointer;
+}
+
+.remove-symbol {
+    margin-right: 2px;
+}
