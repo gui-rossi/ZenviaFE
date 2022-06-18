@@ -9,7 +9,7 @@ import AddButton from '../../components/AddButton/AddButton';
 import FormHeader from '../../components/Forms/FormHeader';
 import FormEndereço from '../../components/Forms/FormEndereço';
 import FormTelefone from '../../components/Forms/FormTelefone';
-import submitUser from '../../services/userRegister';
+import { submitUser, fetchUser } from '../../services/userRegister';
 
 function RegisterUser({ previousPage }){
     const { user, setUser } = useContext(UserContext);

@@ -17,4 +17,13 @@ const submitUser = {
     }
 }
 
-export default submitUser;
+const fetchUser = {
+    getAllUsers: async () => {
+        const url = `api/Users/GetAllUsers`;
+
+        return API (url, {
+            method: 'GET'
+        });
+    }
+}
+export {submitUser, fetchUser};
