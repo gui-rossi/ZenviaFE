@@ -1,0 +1,23 @@
+.nav-header {
+    background-color: #111D5E;
+    color: #ffffff;
+}
+
+.button-header {
+    outline: none;
+    background: unset;
+    border: unset;
+    color: #ffffff;
+    font-size: large;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.button-header:hover {
+    cursor: pointer;
+    color: #ffffffc2;
+}
+
+.button-header:focus, .button-header:focus-visible {
+    outline: none;
+}

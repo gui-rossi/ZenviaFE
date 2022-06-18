@@ -1,0 +1,15 @@
+.add-button-classes {
+    border: unset;
+    border-radius: 10px;
+    background-color: #193c86;
+    color: white;
+    padding-bottom: 3px;
+}
+
+.add-button-classes:hover {
+    cursor: pointer;
+}
+
+.plus-symbol {
+    margin-right: 2px;
+}

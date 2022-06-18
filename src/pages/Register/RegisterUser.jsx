@@ -1,20 +1,61 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
-import CustomButton from '../../components/Button/CustomButton';
+import './RegisterUser.css';
 
-function RegisterUser({}){
-    const navigate = useNavigate();
+import NavigationHeader from '../../components/Header/NavigationHeader';
+import AddButton from '../../components/AddButton/AddButton';
+import FormHeader from '../../components/Forms/FormHeader';
+import FormEndereço from '../../components/Forms/FormEndereço';
+import FormTelefone from '../../components/Forms/FormTelefone';
 
-    function onClickGoBack(){
-        navigate(-1);
+function RegisterUser({ previousPage }){
+    const [enderecos, setEnderecos] = useState([{nome: "", endereco: "", numero: "", comp: "", cidade: ""}]);
+
+    function addEndereco(){
+        const end = {
+            nome: "", 
+            endereco: "", 
+            numero: "", 
+            comp: "", 
+            cidade: ""
+        }
+        setEnderecos(oldArray => [...oldArray, end]);
     }
 
     return (
-        <CustomButton 
-            text="Go Back"
-            func={() => onClickGoBack()}
-        />
+        <>
+            <NavigationHeader
+                previousPage={ previousPage }
+            />
+
+            <div className="form-container">
+                <form>
+                    <FormHeader />
+                    <div>
+                        <div>Endereços</div>
+                        {
+                            enderecos.map(x => {
+                                return (
+                                    <FormEndereço />
+                                );
+                            })
+                        }
+                        <AddButton 
+                            text={"Endereço"}
+                            func={() => addEndereco()}
+                        />
+                    </div>
+                    <div>
+                        <div>Telefones</div>
+                        <FormTelefone />
+                        <AddButton 
+                            text={"Telefone"}
+                        />
+                    </div>
+                    <button type="submit" onClick={() => console.log("euae")} class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </>
     );
 }
 

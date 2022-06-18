@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<HomePage />} />
-      <Route path='Register' element={<RegisterUser />} />
+      <Route path='Register' element={<RegisterUser previousPage={"Home"} />} />
       <Route path='ListUsers' element={<ListUsers />} />
     </Routes>
   );
