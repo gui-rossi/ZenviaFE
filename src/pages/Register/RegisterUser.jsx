@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
 import { UserContext } from '../../provider/UserContext';
+import { useNavigate } from "react-router-dom";
 
 import './RegisterUser.css';
 
@@ -9,10 +9,14 @@ import AddButton from '../../components/AddButton/AddButton';
 import FormHeader from '../../components/Forms/FormHeader';
 import FormEndereço from '../../components/Forms/FormEndereço';
 import FormTelefone from '../../components/Forms/FormTelefone';
+import submitUser from '../../services/userRegister';
 
 function RegisterUser({ previousPage }){
     const { user, setUser } = useContext(UserContext);
-    const [ tempUser, setTempUser ] = useState(user);
+    const [userEnds, setUserEnds] = useState(user.enderecos);
+    const [userInfos, setUserInfos] = useState(user.informacoes);
+    const [userTels, setUserTels] = useState(user.telefones);
+    const navigate = useNavigate();
 
     function addEndereco(){
         const blankEndereco = {
@@ -21,11 +25,35 @@ function RegisterUser({ previousPage }){
             numero: "", 
             comp: "", 
             cidade: ""
+        };
+        
+        let newUser = userEnds;
+        newUser = [...newUser, blankEndereco];
+        setUserEnds(newUser);
+    }
+
+    function addTelefone(){
+        const blankTelefone = {
+            nome: "", 
+            numero: ""
+        };
+        
+        let newUser = userTels;
+        newUser = [...newUser, blankTelefone];
+        setUserTels(newUser);
+    }
+
+    async function onSubmit(){
+        debugger;
+        const finalUser = {
+            informacoes: userInfos,
+            enderecos: userEnds,
+            telefones: userTels
         }
-        let newUser = tempUser;
-        newUser.enderecos = [...newUser.enderecos, blankEndereco];
-        setTempUser(newUser);
-        console.log(tempUser.enderecos)
+
+        await submitUser.postNewUser(finalUser)
+            .catch(e => {throw e})
+            .then(() => navigate('/'))
     }
 
     return (
@@ -36,15 +64,23 @@ function RegisterUser({ previousPage }){
 
             <div className="form-container">
                 <div>
-                    <FormHeader />
-                    <div>
-                        <div>Endereços</div>
+                    <strong>Informações gerais</strong>
+                    <FormHeader 
+                        info={userInfos}
+                        setInfo={setUserInfos}
+                    />
+                    <div className="separation">
+                        <strong>Endereços</strong>
                         {
-                            tempUser &&
-                            tempUser.enderecos.map((x, i) => {
+                            userEnds &&
+                            userEnds.map((x, i) => {
                                 return (
                                     <FormEndereço
+                                        key={i}
                                         i={i}
+                                        end={x}
+                                        ends={userEnds}
+                                        setEnds={setUserEnds}
                                     />
                                 );
                             })
@@ -54,13 +90,17 @@ function RegisterUser({ previousPage }){
                             func={() => addEndereco()}
                         />
                     </div>
-                    <div>
-                        <div>Telefones</div>
+                    <div className="separation">
+                        <strong>Telefones</strong>
                         {
-                            user.telefones.map((x, i) => {
+                            userTels &&
+                            userTels.map((x, i) => {
                                 return (
-                                    <FormTelefone 
-                                        positionArray={i}
+                                    <FormTelefone
+                                        i={i}
+                                        tel={x}
+                                        tels={userTels}
+                                        setTels={setUserTels}
                                     />
                                 );
                             })
@@ -70,7 +110,7 @@ function RegisterUser({ previousPage }){
                             func={() => addTelefone()}
                         />
                     </div>
-                    <button type="submit" onClick={() => console.log("euae")} className="btn btn-primary">Cadastrar</button>
+                    <button type="submit" onClick={() => onSubmit()} className="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </>
