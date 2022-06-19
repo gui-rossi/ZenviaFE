@@ -17,7 +17,7 @@ const submitUser = {
     }
 }
 
-const fetchUser = {
+const fetchUsers = {
     getAllUsers: async () => {
         const url = `api/Users/GetAllUsers`;
 
@@ -26,4 +26,20 @@ const fetchUser = {
         });
     }
 }
-export {submitUser, fetchUser};
+
+const modifyUser = {
+    putUser: async (user) => {
+        const url = `api/Users/ModifyUser`;
+
+        return API (url, {
+            method: 'PUT',
+            data: {
+                "informacoes": user.informacoes,
+                "enderecos": user.enderecos,
+                "telefones": user.telefones
+            }
+        });
+    }
+}
+
+export {submitUser, fetchUsers, modifyUser};

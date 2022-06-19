@@ -1,20 +1,43 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
-import CustomButton from '../../components/Button/CustomButton';
+import './ListUser.css';
 
-function ListUsers({}){
-    const navigate = useNavigate();
+import NavigationHeader from '../../components/Header/NavigationHeader';
+import { fetchUsers } from '../../services/userRegisterService';
+import UserList from '../../components/UserList/UserList';
 
-    function onClickGoBack(){
-        navigate(-1);
+function ListUsers({ previousPage }){
+    const [allUsers, setAllUsers] = useState([]);
+
+    async function getAllUsers(){
+        await fetchUsers.getAllUsers()
+            .catch(e => {throw e})
+            .then(v => setAllUsers(v.data))
+    }
+
+    useEffect(() => {
+        getAllUsers();
+    }, [])
+
+    function onClickUser(){
+        //navigate to edit screen
     }
 
     return (
-        <CustomButton 
-            text="Go Back"
-            func={() => onClickGoBack()}
-        />
+        <>
+            <NavigationHeader
+                previousPage={ previousPage }
+            />
+            <div className="container-list-users">
+                {
+                    allUsers.length &&
+                    <UserList 
+                        allUsers={allUsers}
+                    />
+                }
+            </div>
+        </>
     );
 }
 

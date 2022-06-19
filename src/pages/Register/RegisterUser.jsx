@@ -9,7 +9,8 @@ import AddButton from '../../components/AddButton/AddButton';
 import FormHeader from '../../components/Forms/FormHeader';
 import FormEndereço from '../../components/Forms/FormEndereço';
 import FormTelefone from '../../components/Forms/FormTelefone';
-import { submitUser, fetchUser } from '../../services/userRegister';
+import { submitUser } from '../../services/userRegisterService';
+import FormFooter from '../../components/Forms/FormFooter';
 
 function RegisterUser({ previousPage }){
     const { user, setUser } = useContext(UserContext);
@@ -107,6 +108,13 @@ function RegisterUser({ previousPage }){
                         <AddButton 
                             text={"Telefone"}
                             func={() => addTelefone()}
+                        />
+                    </div>
+                    <div className="separation">
+                        <strong>Redes Sociais</strong>
+                        <FormFooter 
+                            info={userInfos}
+                            setInfo={setUserInfos}
                         />
                     </div>
                     <button type="submit" onClick={() => onSubmit()} className="btn btn-primary">Cadastrar</button>

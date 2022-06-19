@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import { UserContext } from '../../provider/UserContext'
 
 function FormHeader({ info, setInfo }){
 
