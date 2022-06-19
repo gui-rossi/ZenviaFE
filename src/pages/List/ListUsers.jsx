@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { useLocation } from "react-router-dom";
 
 import './ListUser.css';
 
@@ -7,8 +7,9 @@ import NavigationHeader from '../../components/Header/NavigationHeader';
 import { fetchUsers } from '../../services/userRegisterService';
 import UserList from '../../components/UserList/UserList';
 
-function ListUsers({ previousPage }){
+function ListUsers({ }){
     const [allUsers, setAllUsers] = useState([]);
+    const location = useLocation();
 
     async function getAllUsers(){
         await fetchUsers.getAllUsers()
@@ -27,7 +28,7 @@ function ListUsers({ previousPage }){
     return (
         <>
             <NavigationHeader
-                previousPage={ previousPage }
+                previousPage={ location.state }
             />
             <div className="container-list-users">
                 {

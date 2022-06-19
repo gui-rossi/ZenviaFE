@@ -9,11 +9,11 @@ function HomePage({}){
     const navigate = useNavigate();
 
     function onClickCadastrar(){
-        navigate('Register');
+        navigate('Register', { state: "Home" });
     }
 
     function onClickListar(){
-        navigate('ListUsers');
+        navigate('ListUsers', { state: "Home" });
     }
 
     return (

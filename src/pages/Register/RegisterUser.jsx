@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../provider/UserContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import './RegisterUser.css';
 
@@ -12,12 +12,17 @@ import FormTelefone from '../../components/Forms/FormTelefone';
 import { submitUser } from '../../services/userRegisterService';
 import FormFooter from '../../components/Forms/FormFooter';
 
-function RegisterUser({ previousPage }){
+function RegisterUser({ }){
     const { user, setUser } = useContext(UserContext);
     const [userEnds, setUserEnds] = useState(user.enderecos);
     const [userInfos, setUserInfos] = useState(user.informacoes);
     const [userTels, setUserTels] = useState(user.telefones);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log(location)
+    }, [])
 
     function addEndereco(){
         const blankEndereco = {
@@ -59,7 +64,7 @@ function RegisterUser({ previousPage }){
     return (
         <>
             <NavigationHeader
-                previousPage={ previousPage }
+                previousPage={ location.state }
             />
 
             <div className="form-container">

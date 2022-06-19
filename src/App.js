@@ -13,8 +13,8 @@ function App() {
     <UserProvider>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='Register' element={<RegisterUser previousPage={"Home"} />} />
-        <Route path='ListUsers' element={<ListUsers previousPage={"Home"} />} />
+        <Route path='Register' element={<RegisterUser />} />
+        <Route path='ListUsers' element={<ListUsers />} />
       </Routes>
     </UserProvider>
   );
