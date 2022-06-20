@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../provider/UserContext';
 import { useNavigate, useLocation } from "react-router-dom";
+import { Form } from 'react-bootstrap';
 
 import './RegisterUserPage.css';
 
@@ -46,6 +47,7 @@ function RegisterUserPage({ }){
     }
 
     async function onSubmit(){
+        debugger;
         const finalUser = {
             informacoes: userInfos,
             enderecos: userEnds,
@@ -76,11 +78,12 @@ function RegisterUserPage({ }){
             />
 
             <div className="form-container">
-                <div>
+                <Form>
                     <strong>Informações gerais</strong>
                     <FormHeader 
                         info={userInfos}
                         setInfo={setUserInfos}
+                        previousPage={ location.state }
                     />
                     <div className="separation">
                         <strong>Endereços</strong>
@@ -110,6 +113,7 @@ function RegisterUserPage({ }){
                             userTels.map((x, i) => {
                                 return (
                                     <FormTelefone
+                                        key={i}
                                         i={i}
                                         tel={x}
                                         tels={userTels}
@@ -130,10 +134,10 @@ function RegisterUserPage({ }){
                             setInfo={setUserInfos}
                         />
                     </div>
-                    <button type="submit" onClick={location.state === "List" ? () => onModify() : () => onSubmit()} className="btn btn-primary">
+                    <button onClick={location.state === "List" ? () => onModify() : () => onSubmit()} className="btn btn-primary">
                         {location.state === "List" ? "Atualizar Usuário" : "Cadastrar Usuário"}
                     </button>
-                </div>
+                </Form>
             </div>
         </>
     );

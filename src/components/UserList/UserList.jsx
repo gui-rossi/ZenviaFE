@@ -71,7 +71,7 @@ function UserList({ allUsers }){
                     allUsersList &&
                     allUsersList.map((user, i) => {
                         return (
-                            <ListGroup className="highlight-row" horizontal onClick={() => onClickUser(user)}>
+                            <ListGroup key={i} className="highlight-row" horizontal onClick={() => onClickUser(user)}>
                                 <ListGroup.Item className="row-1">
                                     {user.informacoes.nome} {user.informacoes.sobrenome}
                                 </ListGroup.Item>

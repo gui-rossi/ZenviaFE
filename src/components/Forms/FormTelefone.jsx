@@ -38,7 +38,7 @@ function FormTelefone({ i, tel, tels, setTels }){
                 <Form.Group className="" as={Col}>
                     <Form.Label>Número</Form.Label>
                     <Form.Control 
-                        type="text" 
+                        type="number" 
                         placeholder="(16) 99753-6898*"
                         defaultValue={tel.numero}
                         onChange={e => changeNumero(e.target.value)}        
