@@ -46,8 +46,9 @@ function FormHeader({ info, setInfo }){
                 <Form.Group as={Col}>
                     <Form.Label>ID</Form.Label>
                     <Form.Control 
-                        type="text" 
-                        placeholder="ALJSH1423*"
+                        type="text"
+                        required
+                        placeholder="02f26943-2da0-46a0-bbbe-bb130c058ae4*"
                         defaultValue={info.id}
                         onChange={e => changeId(e.target.value)}     
                     />

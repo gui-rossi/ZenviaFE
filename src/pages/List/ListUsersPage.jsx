@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 
-import './ListUser.css';
+import './ListUsersPage.css';
 
 import NavigationHeader from '../../components/Header/NavigationHeader';
 import { fetchUsers } from '../../services/userRegisterService';
 import UserList from '../../components/UserList/UserList';
 
-function ListUsers({ }){
+function ListUsersPage({ }){
     const [allUsers, setAllUsers] = useState([]);
     const location = useLocation();
 
@@ -38,4 +38,4 @@ function ListUsers({ }){
     );
 }
 
-export default ListUsers;
+export default ListUsersPage;

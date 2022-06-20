@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../provider/UserContext';
 import { useNavigate, useLocation } from "react-router-dom";
 
-import './RegisterUser.css';
+import './RegisterUserPage.css';
 
 import NavigationHeader from '../../components/Header/NavigationHeader';
 import AddButton from '../../components/AddButton/AddButton';
@@ -12,7 +12,7 @@ import FormTelefone from '../../components/Forms/FormTelefone';
 import { submitUser, modifyUser } from '../../services/userRegisterService';
 import FormFooter from '../../components/Forms/FormFooter';
 
-function RegisterUser({ }){
+function RegisterUserPage({ }){
     const { user, setUser } = useContext(UserContext);
     const [userEnds, setUserEnds] = useState(user.enderecos);
     const [userInfos, setUserInfos] = useState(user.informacoes);
@@ -139,4 +139,4 @@ function RegisterUser({ }){
     );
 }
 
-export default RegisterUser;
+export default RegisterUserPage;
