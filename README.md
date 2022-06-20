@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Zenvia challenge web app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A aplicação é formada por um frontend (ZenviaFE) em ReactJS e um backend (ZenviaBE) em .NET. Com SQL Server na azure.
 
-## Available Scripts
+## Sobre o Frontend:
 
-In the project directory, you can run:
+A aplicação usa React-Bootstrap e rotas do react. 
+Existem 3 paginas: a Home page, a List page e a User page e um header de navegação no topo.
+O front faz 3 chamadas para o back: uma para recuperar todos os usuarios, uma para adicionar usuario novo e uma para modificar usuario. 
 
-### `npm start`
+A home page é a inicial e só há 2 botões para o usuário interagir. Os que redireciona ele para as outras paginas.
+Na página de adição de usuário há campos do react-bootstrap de formularios, mas sem validação no front, o usuario pode inserir qualquer valor nos campos.
+Também adicionei a possibilidade do usuario de remover enderecos ou telefones, mas a integracao nao estava funcionando como eu gostaria, entao comentei esses botoes de exclusão.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Na página de listar usuario, há um campo de busca que permite uma fuzzy-search por nome do usuario, o componente de paginação do react-bootstrap não estava funcionando,
+como fiquei sem tempo decidi comentar o codigo.
+É possivel clicar em um item da lista e o usuario sera redirecionado para a mesma tela de usuario só que com os campos daquele usario clicado pre populados e o botao de
+cadastro é substituido pelo de modificar usuario. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Fiz uso de contextAPI para manter informações do usuario conforme ele edita os seus dados em todos os componentes, sem precisa ficar passando para baixo na hierarquia de componentes.
+nao escolhi redux e porque seria overkill e porque nao era permitido, por isso fui de contextAPI
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Separei o projeto em componentes, paginas, services e utilitarios. Deixei granular na medida do possível e no que o tempo permitia.
