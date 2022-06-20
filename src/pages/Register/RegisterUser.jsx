@@ -9,7 +9,7 @@ import AddButton from '../../components/AddButton/AddButton';
 import FormHeader from '../../components/Forms/FormHeader';
 import FormEndereço from '../../components/Forms/FormEndereço';
 import FormTelefone from '../../components/Forms/FormTelefone';
-import { submitUser } from '../../services/userRegisterService';
+import { submitUser, modifyUser } from '../../services/userRegisterService';
 import FormFooter from '../../components/Forms/FormFooter';
 
 function RegisterUser({ }){
@@ -19,10 +19,6 @@ function RegisterUser({ }){
     const [userTels, setUserTels] = useState(user.telefones);
     const navigate = useNavigate();
     const location = useLocation();
-
-    useEffect(() => {
-        console.log(location)
-    }, [])
 
     function addEndereco(){
         const blankEndereco = {
@@ -59,6 +55,18 @@ function RegisterUser({ }){
         await submitUser.postNewUser(finalUser)
             .catch(e => {throw e})
             .then(() => navigate('/'))
+    }
+
+    async function onModify(){
+        const editedUser = {
+            informacoes: userInfos,
+            enderecos: userEnds,
+            telefones: userTels
+        }
+        
+        await modifyUser.putUser(editedUser)
+            .catch(e => {throw e})
+            .then(() => navigate('ListUsers'))
     }
 
     return (
@@ -122,7 +130,9 @@ function RegisterUser({ }){
                             setInfo={setUserInfos}
                         />
                     </div>
-                    <button type="submit" onClick={() => onSubmit()} className="btn btn-primary">Cadastrar</button>
+                    <button type="submit" onClick={location.state === "List" ? () => onModify() : () => onSubmit()} className="btn btn-primary">
+                        {location.state === "List" ? "Atualizar Usuário" : "Cadastrar Usuário"}
+                    </button>
                 </div>
             </div>
         </>

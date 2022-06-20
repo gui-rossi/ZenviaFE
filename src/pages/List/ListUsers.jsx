@@ -21,10 +21,6 @@ function ListUsers({ }){
         getAllUsers();
     }, [])
 
-    function onClickUser(){
-        //navigate to edit screen
-    }
-
     return (
         <>
             <NavigationHeader
