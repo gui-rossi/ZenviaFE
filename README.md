@@ -1,6 +1,7 @@
 # Zenvia challenge web app
 
 A aplicação é formada por um frontend (ZenviaFE) em ReactJS e um backend (ZenviaBE) em .NET. Com SQL Server na azure.
+Para testar, basta rodar o backend, dar npm i no front e npm start. Como o banco de dados está na nuvem nao ha necessidade de fazer nada nele.
 
 ## Sobre o Frontend:
 
