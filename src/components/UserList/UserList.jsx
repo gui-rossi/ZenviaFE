@@ -27,7 +27,7 @@ function UserList({ allUsers }){
         }
 
         setUser(editUser);
-        navigate('/Register', { state: "List" }) //mando as infos do usuario, verifico no Register se esta vindo de Home ou de List
+        navigate('/User', { state: "List" }) //mando as infos do usuario, verifico no Register se esta vindo de Home ou de List
     }
     
     function changeSearch(value){

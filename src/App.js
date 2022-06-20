@@ -13,7 +13,7 @@ function App() {
     <UserProvider>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='Register' element={<RegisterUserPage />} />
+        <Route path='User' element={<RegisterUserPage />} />
         <Route path='ListUsers' element={<ListUsersPage />} />
       </Routes>
     </UserProvider>

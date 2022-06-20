@@ -14,7 +14,7 @@ function HomePage({}){
 
     function onClickCadastrar(){
         setUser((emptyUser));
-        navigate('Register', { state: "Home" });
+        navigate('User', { state: "Home" });
     }
 
     function onClickListar(){
